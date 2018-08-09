@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img src="../assets/imgs/CITNOVA.png" alt="citnova.png" width="45%" height="10%">
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="login()"><ion-icon name="log-in"> Sign-Up</ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<h2 align="center">Quejas y Sugerencias</h2>
+
+	<button (click)="mostrar()" class="card">
+		<p class="positive">Inovación y empredimiento</p>
+		<img src="../assets/imgs/inovacion.png" alt="">
+	</button>
+
+	<button (click)="mostrar()" class="card">
+		<p>Infraestructura</p>
+		<img src="../assets/imgs/infraestructura.png" alt="">
+	</button>	
+
+	<button (click)="mostrar()" class="card">
+		<p>Talento Humano</p>
+		<img src="../assets/imgs/talent.png" alt="">
+	</button>
+
+	<button (click)="mostrar()" class="card">
+		<p>Desarrollo Científico</p>
+		<img src="../assets/imgs/ciencia.png" alt="">
+	</button>
+
+	<button (click)="mostrar()" class="card">
+		<p>Difusión y divulgación del conocimiento</p>
+		<img src="../assets/imgs/divulgacion.png" alt="">
+	</button>
+
+
+</ion-content>
