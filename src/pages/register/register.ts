@@ -11,14 +11,20 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = { email: '', password: '' };
+
+  registerCredentials = { 
+    email: '', 
+    password: '', 
+    nick: ''
+  };
 
   constructor(private nav: NavController, private auth: AuthService,private alertCtrl: AlertController) { }
  
   registrar(){
-    localStorage.setItem("correo",this.registerCredentials.email);
-    localStorage.setItem("contra",this.registerCredentials.password);
-    
+    localStorage.setItem("correo", this.registerCredentials.email);
+    localStorage.setItem("contra", this.registerCredentials.password);
+    localStorage.setItem("nick",   this.registerCredentials.nick);
+
   }
 
   public register() {
@@ -44,8 +50,7 @@ export class RegisterPage {
           text: 'OK',
           handler: data => {
             if (this.createSuccess) {
-              //this.nav.push(LoginPage);
-              this.nav.popToRoot();
+              this.nav.push('LoginPage');
             }
           }
         }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
-import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -12,7 +11,7 @@ export class LoginPage {
   loading: Loading;
   registerCredentials = { email: '', password: '' };
  
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
+  constructor(private nav: NavController, private auth: AuthService, private alert: AlertController, private loadingCtrl: LoadingController) { }
  
   public createAccount() {
     this.nav.push('RegisterPage');
@@ -55,7 +54,7 @@ export class LoginPage {
   showError(text) {
     this.loading.dismiss();
  
-    let alert = this.alertCtrl.create({
+    let alert = this.alert.create({
       title: 'Fail',
       subTitle: text,
       buttons: ['OK']

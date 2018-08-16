@@ -1,11 +1,12 @@
 page-register {
   .login-content {
-    background: #64b5f6;
+   /* background: #64b5f6; */
  
     .login-box {
-      background: #2196f3;
+      background: #47C6E5;
       padding: 20px 20px 0px 20px;
-      margin-top: 23vh;
+      margin-top: 15vh;
+      border-radius: 5px;
     }
  
     ion-row {
@@ -37,6 +38,9 @@ page-register {
        background: #51CFB1;
        border-radius: 30px !important;
        border: 1px solid #ffffff;
+     }
+     img {
+       transform: translateX(22vw);
      }
   }
 }
