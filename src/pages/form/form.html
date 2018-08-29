@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+     <img src="../assets/imgs/CITNOVA.png" alt="citnova.png" width="32px" height="32px" id="logo"> 
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="main">
+    <form (ngSubmit)="logForm()">
+      <ion-item>
+        <ion-label >Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="todo.nombre" name="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Queja o Sugerencia</ion-label>
+        <ion-textarea [(ngModel)]="todo.queja" name="queja"></ion-textarea>
+      </ion-item>
+      <button ion-button type="submit" class="submit-btn" block>Enviar</button>
+    </form>
+
+  </div>
+</ion-content>

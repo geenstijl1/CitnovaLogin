@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the MainMenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-main-menu',
@@ -15,7 +7,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MainMenuPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -23,9 +15,9 @@ export class MainMenuPage {
   }
 
   mostrar():void {
-  	alert("Aqui saldra el formulario");
+    this.navCtrl.push('FormPage');
   }
   public login() {
-      this.navCtrl.push('LoginPage')
+    this.navCtrl.push('LoginPage');
   }
 }

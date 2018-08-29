@@ -12,7 +12,7 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 export class RegisterPage {
   createSuccess = false;
 
-  registerCredentials = { 
+  registerCredentials:any = { 
     email: '', 
     password: '', 
     nick: ''

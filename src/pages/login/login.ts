@@ -9,8 +9,12 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 })
 export class LoginPage {
   loading: Loading;
-  registerCredentials = { email: '', password: '' };
- 
+  registerCredentials = { 
+    email: '', 
+    password: '', 
+    nick: '' 
+  };
+
   constructor(private nav: NavController, private auth: AuthService, private alert: AlertController, private loadingCtrl: LoadingController) { }
  
   public createAccount() {
@@ -20,13 +24,17 @@ export class LoginPage {
   inicioSesion(){
     if(this.registerCredentials.email == localStorage.getItem("correo")){
       if(this.registerCredentials.password == localStorage.getItem("contra")){
-        this.nav.push('MainMenuPage');
+          this.nav.push('MainMenuPage');
       }else{
         alert("Contrasenia Incorrecta");
       }
     }else{
       alert("Correo Incorrecto");
     }
+
+    /*if (this.registerCredentials.email == 'admin') {
+      this.nav.push('');
+    }*/
   }
 
   public login() {
