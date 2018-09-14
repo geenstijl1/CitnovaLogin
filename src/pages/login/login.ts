@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service/auth-service';
+import { HttpClient } from '@angular/common/http';
 
 @IonicPage()
 @Component({
@@ -9,63 +9,57 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 })
 export class LoginPage {
   loading: Loading;
-  registerCredentials = { 
-    email: '', 
-    password: '', 
-    nick: '' 
-  };
 
-  constructor(private nav: NavController, private auth: AuthService, private alert: AlertController, private loadingCtrl: LoadingController) { }
- 
+  private url = 'http://localhost:3000/api/v1/sign_in';
+
+  userLogin = [
+    {"auth":
+      {"email": "",
+        "password": ""
+    }
+    }
+  ]
+
+  constructor(private nav: NavController, private http: HttpClient) { }
+
   public createAccount() {
     this.nav.push('RegisterPage');
   }
- 
-  inicioSesion(){
-    if(this.registerCredentials.email == localStorage.getItem("correo")){
-      if(this.registerCredentials.password == localStorage.getItem("contra")){
-          this.nav.push('MainMenuPage');
-      }else{
-        alert("Contrasenia Incorrecta");
-      }
-    }else{
-      alert("Correo Incorrecto");
-    }
-
-    /*if (this.registerCredentials.email == 'admin') {
-      this.nav.push('');
-    }*/
+  ionViewDidLoad() {
   }
 
-  public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {        
-        this.nav.setRoot('HomePage');
-      } else {
-        this.showError("Access Denied");
+  inicioSesion() {
+    this.http.post(this.url, this.userLogin[0])
+    .subscribe(res => {
+      console.log(res[1].username);
+      if (res[0].msg == 'Invalid email address or password') {
+        alert(res[0].msg)
+      }else {
+        localStorage.setItem('username', res[1].username);
+        localStorage.setItem('token', res[0]);
+        switch(res[1].username) {
+          case 'innovacion':
+            this.nav.push('InnovationPage');
+            break;
+          case 'gestiont':
+            this.nav.push('TalentPage');
+            break;
+          case 'difusiond':
+            this.nav.push('DifusionPage');
+            break;
+          case 'desarcyt':
+            this.nav.push('DcientPage');
+            break;
+          case 'infrascyt':
+            this.nav.push('InfraPage');
+            break;
+          default:
+            this.nav.push('MainMenuPage');
+            break;
+        }
       }
-    },
-      error => {
-        this.showError(error);
-      });
-  }
- 
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      dismissOnPageChange: true
-    });
-    this.loading.present();
-  }
- 
-  showError(text) {
-    this.loading.dismiss();
- 
-    let alert = this.alert.create({
-      title: 'Fail',
-      subTitle: text,
-      buttons: ['OK']
     });
   }
+
 }
+

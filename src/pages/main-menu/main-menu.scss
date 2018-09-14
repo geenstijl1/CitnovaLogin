@@ -5,7 +5,7 @@ page-main-menu {
     background: rgb(114, 168, 35);
   }
   #logo {
-    transform: translateX(80vw);
+    transform: translateX(70vw);
   }
 
   button {
@@ -31,6 +31,14 @@ page-main-menu {
     margin-left: 0;margin-right: 0;
     width: 100%;
     color: gray;
+  }
+
+  #nickname {
+    position: absolute;
+    font-size: 2rem;
+    font-family: Helvetica;
+    color: gray;
+    margin: 5px;
   }
 
   h2 {

@@ -1,22 +1,19 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-     <img src="../assets/imgs/CITNOVA.png" alt="citnova.png" width="32px" height="32px" id="logo"> 
+      <img src="../assets/imgs/CITNOVA.png" alt="citnova.png" width="32px" height="32px" id="logo"> 
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+  <h2 align="center">Solicitudes y sugerencias</h2>
   <div class="main">
-    <form (ngSubmit)="logForm()">
+    <form (ngSubmit)="enviarQueja()">
       <ion-item>
-        <ion-label >Nombre</ion-label>
-        <ion-input type="text" [(ngModel)]="todo.nombre" name="nombre"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Queja o Sugerencia</ion-label>
-        <ion-textarea [(ngModel)]="todo.queja" name="queja"></ion-textarea>
+        <ion-label floating>Escribe aquí</ion-label>
+        <ion-textarea [(ngModel)]="newComplain[0].complain.body" name="body"></ion-textarea>
       </ion-item>
       <button ion-button type="submit" class="submit-btn" block>Enviar</button>
     </form>

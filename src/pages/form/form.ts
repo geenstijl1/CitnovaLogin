@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
+import {Headers} from '@angular/http';
 
 @IonicPage()
 @Component({
@@ -8,20 +10,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FormPage {
 
-  todo = {
-      nombre: '',
-      queja: ''
+  private token = {
+    tk : localStorage.getItem('token')
   }
+  private areaId = localStorage.getItem('currentAreaId');
+  private url = "http://localhost:3000/api/v1/complain/create";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  newComplain  = [
+    {"complain": {
+      "body" : "",
+      "area_id": this.areaId
+    }
+    }
+  ]
+  head= {
+    headers: new HttpHeaders ({"Content-Type": "application/json", "Authorization": "Bearer " + this.token.tk})
+  };
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FormPage');
-  }
+  constructor(public nav: NavController, public navParams: NavParams, public http: HttpClient) {}
 
-  logForm() {
-    console.log(todo.nombre);
-    console.log(todo.queja);
+  enviarQueja() {
+    this.http.post(this.url, this.newComplain[0], this.head)
+    .subscribe(res => {
+      alert(res[0].msg) 
+      this.nav.push('MainMenuPage');
+    });
   }
- }
+}
